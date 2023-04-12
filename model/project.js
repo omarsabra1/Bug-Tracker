@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-const Project= mongoose.Schema({
+const ProjectShema= mongoose.Schema({
     name:{
         type:String,
         required:true
@@ -10,4 +10,4 @@ const Project= mongoose.Schema({
     },
 })
 
-module.exports= mongoose.model('Projects',Project);
+module.exports= mongoose.model('Projects',ProjectShema);

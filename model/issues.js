@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-const Issue= mongoose.Schema({
+const IssueSchema= mongoose.Schema({
     title:{
         type:String,
         required:true
@@ -12,7 +12,6 @@ const Issue= mongoose.Schema({
         type:String,
         enum:['open','closed'],
         default:'open',
-        required:true
     },
     priority:{
         type:String,
@@ -27,4 +26,6 @@ const Issue= mongoose.Schema({
         type:mongoose.SchemaTypes.ObjectId,
         ref:'Projects'
     }
-})
+});
+
+module.exports=mongoose.model('Issues',IssueSchema)
