@@ -74,16 +74,14 @@ exports.deleteIssue = async (req, res, next) => {
     if (mongoose.Types.ObjectId.isValid(issue_id)) {
       const issue = await Issue.findById(issue_id);
       if (!issue) {
-        res.status(406).json({
-          message: "issue not found",
-          status: false,
-        });
+        const error = new Error("issue not found");
+        error.statusCode = 422;
+        return next(error);
       }
     } else {
-      res.status(406).json({
-        message: "id not found",
-        status: false,
-      });
+      const error = new Error("id not (found / accepted)");
+      error.statusCode = 404;
+      return next(error);
     }
     await Issue.deleteOne({ _id: issue_id });
     res.status(200).json({

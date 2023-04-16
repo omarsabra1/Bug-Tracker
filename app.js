@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8800;
 
 app.use(express.json());
 
@@ -11,9 +11,11 @@ app.use(express.json());
 const UserRoute = require("./routes/userRout");
 const projectRoute = require("./routes/projectsRout");
 const issueRoute = require("./routes/isssueRoute");
+const commentRoute=require('./routes/commentRoute');
 app.use("/user", UserRoute);
 app.use(projectRoute);
 app.use(issueRoute);
+app.use('/comment',commentRoute);
 //error middleware
 app.use((error, req, res, next) => {
   console.log(error);
